@@ -24,10 +24,6 @@
 
 ### 响应式开发
 
-![image-20220225213411024](/Users/cobb/Library/Application Support/typora-user-images/image-20220225213411024.png)
-
-
-
 ### 生命周期
 
 ![Vue 实例生命周期](https://cn.vuejs.org/images/lifecycle.png)
@@ -35,12 +31,6 @@
 
 
 ### webstorm 模板功能
-
-![image-20220226195303484](/Users/cobb/Library/Application Support/typora-user-images/image-20220226195303484.png)
-
-
-
-
 
 ## 基础知识
 
