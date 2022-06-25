@@ -2,6 +2,8 @@
 
 ### pages.json页面路由
 
+​	
+
 ### mainfest.json应用配置
 
 ### uni.scss文件
@@ -223,4 +225,18 @@
 ​	Vue实例销毁之后调用.调用后,vue实例指示的所有东西都会解绑,所有的事件监听器会被移除,所有的子实例也会被销毁
 
 ## API
+
+### 绘画(canvas)
+
+
+
+
+
+# tips:
+
+1. ## uni-app在使用v-for时block和view的使用区别:
+
+   使用view自带换行效果
+
+   使用block时,不带换行效果
 
