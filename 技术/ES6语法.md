@@ -1,5 +1,23 @@
 # ES6语法
 
+## 三元表达式
+
+**语法**
+
+- **boolean_expression ? true_value : false_value;**
+- boolean_expression: 布尔表达式，表达式在参与三元运算中必须求得一个布尔类型的值，要么是 true，要么是 false，结果作为判断依据，判断到底去：前面的值还是后面的值
+- true_value：布尔表达式的值为真时，三元表达式的结果
+- false_value：布尔表达式的值为假时，三元表达式的结果
+- 作用：根据布尔表达式的结果，如果为真，三元表达式结果就是真值，如果为假，三元表达式结果就是假值
+
+```js
+    var a = 3;
+    var b = a >= 3 ? true : false
+    console.log(b); // true
+```
+
+
+
 ## Let、const和var
 
 1. 作用域

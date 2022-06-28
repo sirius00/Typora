@@ -176,9 +176,15 @@
 
 #### 视图容器
 
+
+
 #### 基础内容
 
+
+
 #### 表单组件
+
+
 
 #### 路由及页面跳转
 
@@ -189,6 +195,10 @@
 #### 媒体组件
 
 
+
+#### 画布
+
+canvas
 
 ### 组件的生命周期
 
@@ -234,9 +244,82 @@
 
 # tips:
 
-1. ## uni-app在使用v-for时block和view的使用区别:
+## uni-app在使用v-for时block和view的使用区别:
 
-   使用view自带换行效果
 
-   使用block时,不带换行效果
+
+使用view自带换行效果
+
+使用block时,不带换行效果
+
+## 关于uni-app中使用canvas,在H5不显示问题
+
+### 需要注意的问题:
+
+1. 组件嵌套,在子组件中不能使用canvas ,也不是说不能,只能说使用了也没用,H5中显示无果,小程序一样.(我在uniapp社区提出这个bug ,但是我看有人在今年的6.7月份也提出过,但至今为止没有解决这个问题)
+2. 在H5中 出现canvas闪烁的问题 ,就一定要用异步去显示canvas,
+3. 绘制canvas 时  得用uniapp 中的draw()去绘制,不然 不会显示(原生一般直接填充就完事了)
+4. 一定要在onReady函数中进行实例化canvas并且绘制 
+
+
+
+```vue
+ 
+<template>
+	<view class="">
+        <view style="margin:0 auto;width: 200px;padding-left: 10px;">
+           <canvas style="width:  200px;; height: 200px;border: #007AFF solid 1rpx;" canvas-id="myCanvas" id="myCanvas"></canvas>
+        </view>
+</view>
+ 
+</template>
+ 
+ 
+<script>
+export default {
+ 
+	onReady() {
+	    this.initCanvas()
+	},
+ 
+	data() {
+		return {
+			wendu:16
+		}
+	},
+	methods: {
+		/*初始化画布*/
+		initCanvas() {
+			const ctx = uni.createCanvasContext('myCanvas',this)
+			ctx.beginPath();
+			ctx.arc(100,100,60,0.7*Math.PI,0.30*Math.PI);
+			ctx.createLinearGradient(0,0,170,0);
+			/* 渐变 */
+			const grd=ctx.createLinearGradient(0,0,170,0);
+			grd.addColorStop("0.7","#09C4D5");
+			grd.addColorStop(1,"#07D2B8");
+			ctx.strokeStyle = grd;
+			ctx.lineWidth = 8;
+			/* 字体 */
+			ctx.font="40px Arial";		//设置字体大小
+			ctx.fillStyle = '#09C4D5';//fillStyle填充颜色
+			ctx.fillText("16",73,110); //fillText("字体",x,y)
+			ctx.font="20px Arial"	
+			ctx.fillStyle = 'gray';
+			ctx.fillText("℃",115,88);
+			ctx.font="12px Arial"
+			ctx.fillStyle = 'gray';
+			ctx.fillText("室内温度",77,130);
+			/* 阴影 */
+			ctx.shadowBlur=2;
+			ctx.shadowColor="#09C4D5";
+			setTimeout(function(){	//必须延迟执行 不然H5不显示
+				ctx.stroke();
+				ctx.draw()		//必须加上  uniapp 没这儿玩意儿 显示不出来不比原生  不加可以显示
+			 },200) 
+		},
+	},
+ 
+</script>
+```
 
