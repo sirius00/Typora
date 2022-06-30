@@ -1,5 +1,37 @@
 # git
 
+## 分支的提交和合并
+
+将本地的tabbar分支进行本地的commit提交:
+
+```bash
+git add .
+git commit -m "comment"
+```
+
+将本地的tabbar分支推送到远程仓库进行保存:
+
+```bash
+git push -u origin tabbar
+```
+
+将本地的tabbar分支合并到本地的master分支:
+
+```bash
+git check master
+git merge tabbar
+```
+
+删除本地的tababr分支
+
+```bash
+git branch -D tababr
+```
+
+
+
+
+
 ## 踩坑记录
 
 ### 提交仓库时报错:
