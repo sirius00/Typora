@@ -90,3 +90,15 @@ git branch -D tababr
 
     `git branch -D newbrnch`
 
+
+
+### commit时,报错
+
+![image-20220701180221323](https://cdn.jsdelivr.net/sirius00/Picimg@main/img/image-20220701180221323.png)
+
+#### 解决办法:
+
+提交时加上参数: -a, 表示新增
+
+`git commit -am "提交说明"`
+
