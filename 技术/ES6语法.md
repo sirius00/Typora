@@ -106,3 +106,69 @@ const obj = {
 }
 ~~~
 
+
+
+
+
+## async 和 await 使用总结
+
+1. ==async== 放在函数声明前面, 成为async function, 异步函数:
+
+    
+
+    ```js
+    function hello() {return "hello" };
+    hello();   //返回"hello"
+    ```
+
+    
+
+    如果将该函数变为异步函数:
+
+    ```js
+    async function hello() {return "hello" };
+    hello();
+    
+    // 异步函数表达式, 如下所示:
+    let hello = async function() { return "hello" };
+    hello();
+    
+    // 使用箭头函数
+    let hello = async () => { return "hello" }
+    ```
+
+     现在调用该函数会返回一个promise. 这是异步函数的特征之一 ,他保证函数的返回值为 promise
+
+    
+
+    要实际使用promise完成返回的值,我们可以使用 .then()块, 因为他返回的是prmise:
+
+    ```js
+    hello().then((value) => console.log(value))
+    
+    // 简写
+    hello().then(conosle.log)
+    ```
+
+    
+
+ 
+
+1. ==await== 关键字只在异步函数中才起作用
+
+    他可以放在任何异步的, 基于 promise 的函数之前。它会暂停代码在该行上，直到 promise 完成，然后返回结果值。在暂停的同时，其他正在等待执行的代码就有机会执行了。
+
+    ```js
+    async function hello() {
+      return greeting = await Promise.resolve("Hello");
+    };
+     
+    hello().then(alert);
+    
+    ```
+
+    去除了到处是.then()代码块!
+
+    
+
+    不需要附加 .then() 代码块到每个promise-based方法的结尾，你只需要在方法调用前添加 await 关键字，然后把结果赋给变量。await 关键字使JavaScript运行时暂停于此行，允许其他代码在此期间执行，直到异步函数调用返回其结果。一旦完成，您的代码将继续从下一行开始执行。

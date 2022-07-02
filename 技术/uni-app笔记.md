@@ -164,7 +164,7 @@
 
 | 路由方式   | 页面栈表现                        | 触发时机                                                     |
 | ---------- | --------------------------------- | ------------------------------------------------------------ |
-| 打开新页面 | 新页面入栈                        | 调用 API  [uni.navigateTo](https://uniapp.dcloud.io/api/router#navigateto) 、使用组件 '<navigator open-type="navigaator">  ' |
+| 打开新页面 | 新页面入栈                        | 调用 API  [uni.navigateTo](https://uniapp.dcloud.io/api/router#navigateto) 、使用组件 `<navigator open-type="navigaator">` |
 | 页面重定向 | 当前页面出栈，新页面入栈          | 调用 API  [uni.redirectTo](https://uniapp.dcloud.io/api/router#redirectto) 、使用组件 `<navigator open-type="redirectTo">` |
 | 页面返回   | 页面不断出栈，直到目标返回页      | 调用 API  [uni.navigateBack](https://uniapp.dcloud.io/api/router#navigateback)  、使用组件 `<navigator open-type="navigatorBack">` 、用户按左上角返回按钮、安卓用户点击物理back按键 |
 | Tab 切换   | 页面全部出栈，只留下新的 Tab 页面 | 调用 API  [uni.switchTab](https://uniapp.dcloud.io/api/router#switchtab) 、使用组件 `<navigator open-type="switchTab">` 、用户切换 Tab |
@@ -237,6 +237,63 @@ canvas
 ## API
 
 ### 绘画(canvas)
+
+
+
+## 配置网路请求
+
+由于平台的限制,小程序项目中不支持使用axios, 而且原生的wx.request(), API功能较为简单,不支持拦截器等全局定制的功能.因此建议在uni-app项目中使用  *@escook/request-miniprogram* 第三方包发起网络数据请求
+
+官方文档 [@escook/request-miniprogram](https://www.npmjs.com/package/@escook/request-miniprogram)
+
+
+
+在项目的 <u>main.js</u> 文件中,通过如下方式进行配置:
+
+```js
+import { $http } from '@escook/request-miniprogram'
+
+// 在 uni-app 项目中，可以把 $http 挂载到 uni 顶级对象之上，方便全局调用
+uni.$http = $http
+
+// 请求的根路径
+$http.baseUrl = 'https://wwww.xxxxxxxx.com'
+
+// 请求拦截器
+$http.beforeRequest = function (options) {
+  uni.showLoading({
+	  title: "数据加载中..."
+  })
+}
+
+// 响应拦截器
+$http.afterRequest = function () {
+  uni.hideLoading()
+}
+```
+
+使用:
+
+```js
+//获取轮播图数据
+async getSwiperList() {
+      // 1、 发起请求（请求返回的是一个promise对象，我们可以用async和await来做优化）
+      const { data: res } = await uni.$http.get('/api/xxx/xxx/xxx/swiperData')
+      console.log('查看请求的结果=>>',res);
+      // 2、 请求失败
+      if (res.meta.status !== 200) {
+        return uni.showToast({
+          title: '数据请求失败！',
+          duration: 1500,
+          icon: 'none',
+        })
+      }
+      // 3、 请求成功，为 data 中的数据赋值
+      this.swiperList = res.message;
+    },
+```
+
+
 
 
 
