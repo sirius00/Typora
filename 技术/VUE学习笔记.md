@@ -1461,3 +1461,66 @@ instance1({
 
 
 
+# VUE补充
+
+## <component> 标签
+
+作用: 可以动态的绑定组件, 根据数据的不同更换不同的组件
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>component-4</title>
+</head>
+<body>
+    <h1>component-4</h1>
+    <hr>
+    <div id="app">
+      // 绑定 who 数据 
+       <component v-bind:is="who"></component>
+       <button @click="changeComponent">changeComponent</button>
+    </div>
+
+    <script type="text/javascript">
+      // 定义三个不同的组件
+        var componentA={
+            template:`<div style="color:red;">I'm componentA</div>`
+        }
+        var componentB={
+            template:`<div style="color:green;">I'm componentB</div>`
+        }
+        var componentC={
+            template:`<div style="color:pink;">I'm componentC</div>`
+        }
+
+        var app=new Vue({
+            el:'#app',
+            data:{
+                who:'componentA'
+            },
+            components:{
+              // 注册三个组件
+                "componentA":componentA,
+                "componentB":componentB,
+                "componentC":componentC,
+            },
+            methods:{
+                changeComponent:function(){
+                    if(this.who=='componentA'){
+                        this.who='componentB';
+                    }else if(this.who=='componentB'){
+                        this.who='componentC';
+                    }else{
+                        this.who='componentA';
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
+```
+
