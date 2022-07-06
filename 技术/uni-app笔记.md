@@ -380,3 +380,44 @@ export default {
 </script>
 ```
 
+
+
+## uni-app中使用vuex
+
+
+
+
+
+## uni-app中阻止事件冒泡
+
+### 开发小程序时的 注意事项
+
+@click.stop来做事件冒泡没有作用。需要把@click.stop改成@tap.stop就可以实现了
+
+### uni-app点击子元素出发父元素事件
+
+```html
+	<view class="bgFixedBack" id="bgFixedBack" @click="closeModalLight">	
+		
+			<view id='bgWhite' ref='bgWhite' class="bgWhite" @click.stop='!closeModalLight'>
+				<modal-header :title='title'></modal-header>
+				<view class="mainContent">
+				啊哈哈哈
+				</view>
+			</view>
+		</view>
+	</view>
+
+```
+
+#### 父元素关闭弹框事件：
+
+@click=“closeModalLight”
+
+#### 子元素点击事件：
+
+① @click.stop=‘!closeModalLight’
+
+②@click.stop=“() => {}”
+
+③@click.native.stop=“() => {}”
