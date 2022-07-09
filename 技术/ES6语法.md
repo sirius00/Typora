@@ -172,3 +172,25 @@ const obj = {
     
 
     不需要附加 .then() 代码块到每个promise-based方法的结尾，你只需要在方法调用前添加 await 关键字，然后把结果赋给变量。await 关键字使JavaScript运行时暂停于此行，允许其他代码在此期间执行，直到异步函数调用返回其结果。一旦完成，您的代码将继续从下一行开始执行。
+
+
+
+# 方法
+
+## 字符串
+
+### replace
+
+JavaScript中replace() 方法如果直接用str.replace("-","!") 只会替换第一个匹配的字符. 而str.replace(/\-/g,"!")则可以全部替换掉匹配的字符(g为全局标志)。 
+
+所以可以用以下几种方式.：
+				string.replace(/reallyDo/g, replaceWith);
+				string.replace(new RegExp(reallyDo, 'g'), replaceWith);
+
+string：字符串表达式包含要替代的子字符串。
+			reallyDo：被搜索的子字符串。
+			replaceWith：用于替换的子字符串。
+
+str.replace("-","!") 替换str中第一次出现的"-"为"!";
+
+str.replace(/\-/g,"!")替换str中所有的"为"!";

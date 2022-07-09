@@ -421,3 +421,37 @@ export default {
 ②@click.stop=“() => {}”
 
 ③@click.native.stop=“() => {}”
+
+
+
+## 事件映射表
+
+[事件映射官方文档](https://uniapp.dcloud.net.cn/tutorial/vue-basics.html#eventhandler:~:text=%23-,%E4%BA%8B%E4%BB%B6%E6%98%A0%E5%B0%84%E8%A1%A8,-//%20%E4%BA%8B%E4%BB%B6%E6%98%A0%E5%B0%84%E8%A1%A8)
+
+> ```js
+> // 事件映射表，左侧为 WEB 事件，右侧为 ``uni-app`` 对应事件
+> 	{
+> 		click: 'tap',
+> 		touchstart: 'touchstart',
+> 		touchmove: 'touchmove',
+> 		touchcancel: 'touchcancel',
+> 		touchend: 'touchend',
+> 		tap: 'tap',
+> 		longtap: 'longtap', //推荐使用longpress代替
+> 		input: 'input',
+> 		change: 'change',
+> 		submit: 'submit',
+> 		blur: 'blur',
+> 		focus: 'focus',
+> 		reset: 'reset',
+> 		confirm: 'confirm',
+> 		columnchange: 'columnchange',
+> 		linechange: 'linechange',
+> 		error: 'error',
+> 		scrolltoupper: 'scrolltoupper',
+> 		scrolltolower: 'scrolltolower',
+> 		scroll: 'scroll'
+> 	}
+> ```
+>
+> ##
