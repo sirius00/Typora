@@ -469,13 +469,44 @@ animation: name duration timing-function delay iteration-count direction fill-mo
 | animation-name            | 指定要绑定到选择器的关键帧的名称                             |
 | animation-duration        | 动画指定需要多少秒或毫秒完成                                 |
 | animation-timing-function | 设置动画将如何完成一个周期                                   |
-| animation-delay           | 设置动画在启动前的延迟间隔。                                 |
-| animation-iteration-count | 定义动画的播放次数。                                         |
+| animation-delay           | 设置动画在启动前的延迟间隔。即是指动画延迟执行时间           |
+| animation-iteration-count | 定义动画的播放次数。无限循环关键字 ==infinite==,即是反复循环播放动画 |
 | animation-direction       | 指定是否应该轮流反向播放动画。                               |
 | animation-fill-mode       | 规定当动画不播放时（当动画完成时，或当动画有一个延迟未开始播放时），要应用到元素的样式。 |
 | animation-play-state      | 指定动画是否正在运行或已暂停。                               |
-| initial                   | 设置属性为其默认值。 [阅读关于 *initial*的介绍。](https://www.runoob.com/cssref/css-initial.html) |
-| inherit                   | 从父元素继承属性。 [阅读关于 *initinherital*的介绍。](https://www.runoob.com/cssref/css-inherit.html) |
+| initial                   | 设置属性为其默认值。                                         |
+| inherit                   | 从父元素继承属性。                                           |
 
+##### *animation-timing-function*
 
+规定动画的速度曲线. 默认是"ease"
+
+常见的动画速度参数:
+
+1. linear: 线性过渡. 
+2. ease: 平滑过渡
+3. ease-in: 由慢到快
+4. ease-out: 由快到慢
+5. ease-in-out: 由慢到快再到慢
+6. step-start: 等同于steps(1, start)
+7. step-end: 等同于steps(1, end)
+8. steps(<integer>[, [ start | end ] ]?)：接受两个参数的步进函数。第一个参数必须为正整数，指定函数的步数。第二个参数取值可以是start或end，指定每一步的值发生变化的时间点。第二个参数是可选的，默认值为end
+9. cubic-bezier(<number>, <number>, <number>, <number>)：特定的贝塞尔曲线类型，4个数值需在[0, 1]区间内
+
+##### *animation-direction*
+
+规定动画是否在下一周期逆向的播放. 默认是"normal"
+
+1. reverse: 反方向运行
+2. alternate: 动画先正常运行再反方向运行,并持续交替运行
+3. alternate-reverse: 动画先反运行再正方向运行,并持续交替运行
+
+##### *animate-fill-mode*
+
+规定对象动画时间之外的状态
+
+1. none: 默认值, 不设置对象动画之外的状态
+2. forwards: 设置对象状态为动画结束时 的状态
+3. backwards: 设置对象状态为动画开始时的状态
+4. both: 设置对象状态为动画结束或开始的状态, 动画开始之前是"form"或"0%"关键帧; 动画完成之后是"to"或"100%"关键帧状态 
 
