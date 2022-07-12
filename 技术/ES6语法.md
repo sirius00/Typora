@@ -173,7 +173,113 @@ const obj = {
 
     不需要附加 .then() 代码块到每个promise-based方法的结尾，你只需要在方法调用前添加 await 关键字，然后把结果赋给变量。await 关键字使JavaScript运行时暂停于此行，允许其他代码在此期间执行，直到异步函数调用返回其结果。一旦完成，您的代码将继续从下一行开始执行。
 
+## 创建对象
 
+1. 对象字面量的方式
+
+    ```js
+    let Cat = {}; //JSON
+    Cat.name="kity"; //添加属性并赋值
+    Cat.age=2;
+    Cat.sayHello=function(){
+    	alert("hello "+Cat.name+",今年"+Cat["age"]+"岁了");//可以使用“.”的方式访问属性，也可以使用 HashMap 的方式访问
+    }
+    Cat.sayHello();//调用对象的（方法）函数
+    
+    ```
+
+2. function(函数)来模拟class
+
+    - 创建一个对象,相当于new 一个类的实例(无参构造函数)
+
+        ```js
+        function Person(){}
+        let personOne=new Person();//定义一个 function，如果有 new 关键字去"实例化",那么该 function 可以看作是一个类
+        personOne.name="dylan";
+        personOne.hobby="coding";
+        personOne.work=function(){
+        	alert(personOne.name+" is coding now...");
+        }
+        personOne.work();
+        
+        ```
+
+    - 使用有参构造函数来实现
+
+        ```js
+        function Pet(name,age,hobby){
+        	this.name=name;//this 作用域：当前对象
+        	this.age=age;
+        	this.hobby=hobby;
+        	this.eat=function(){
+        		alert("我叫"+this.name+",我喜欢"+this.hobby+",也是个吃货");
+        	}
+        }
+        let maidou =new Pet("麦兜",5,"睡觉");//实例化/创建对象
+        maidou.eat();//调用 eat 方法(函数)
+        
+        ```
+
+3. 使用工厂方式来创建(Object关键字)
+
+    ```js
+    let wcDog =new Object();
+    wcDog.name="旺财";
+    wcDog.age=3;
+    wcDog.work=function(){
+    	alert("我是"+wcDog.name+",汪汪汪......");
+    }
+    wcDog.work();
+    
+    ```
+
+4. 使用原型对象的方式 prototype 关键字
+
+    ```js
+    function Dog(){}
+    Dog.prototype.name="旺财";
+    Dog.prototype.eat=function(){
+    	alert(this.name+"是个吃货");
+    }
+    let wangcai =new Dog();
+    wangcai.eat()
+    
+    ```
+
+5. 混合模式(原型和构造函数)
+
+    ```js
+    function Car(name,price){
+    	this.name=name;
+    	this.price=price;
+    }
+    Car.prototype.sell=function(){
+    	alert("我是"+this.name+"，我现在卖"+this.price+"万元");
+    }
+    let camry =new Car("凯美瑞",27);
+    camry.sell();
+    
+    ```
+
+6. 动态原型的方式
+
+    ```js
+    function Car(name,price){
+    	this.name=name;
+    	this.price=price;
+    	if(typeof Car.sell=="undefined"){
+    		Car.prototype.sell=function(){
+    			alert("我是"+this.name+"，我现在有"+this.price+"万元");
+    		}
+    		Car.sell=true;
+    	}
+    }
+    let camry =new Car("大富翁",500);
+    camry.sell();
+    
+    ```
+
+    
 
 # 方法
 
@@ -194,3 +300,10 @@ string：字符串表达式包含要替代的子字符串。
 str.replace("-","!") 替换str中第一次出现的"-"为"!";
 
 str.replace(/\-/g,"!")替换str中所有的"为"!";
+
+
+
+## 数组
+
+### map()方法
+
